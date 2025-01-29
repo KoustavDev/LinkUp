@@ -9,6 +9,7 @@ import { Models } from "appwrite";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import ShareBtn from "./ShareBtn";
 // import { Input } from "../ui/input";
 
 const PostState = ({
@@ -95,12 +96,28 @@ const PostState = ({
               {post.comments.length}
             </div>
           </Link>
+          {/* <div className="flex gap-2 cursor-pointer">
+            <Image
+              src={"/assets/icons/Forward.svg"}
+              alt="share"
+              width={20}
+              height={20}
+              className="cursor-pointer"
+              // onClick={(e) => handleSave(e)}
+            />
+            0
+          </div> */}
+          <ShareBtn
+            postId={post.$id}
+            url={`http://localhost:3000/posts/${post.$id}`}
+            shareNumber={post.share}
+          />
           <div className="flex gap-2">
             <Image
               src={
                 isSaved ? "/assets/icons/saved.svg" : "/assets/icons/save.svg"
               }
-              alt="share"
+              alt="save"
               width={20}
               height={20}
               className="cursor-pointer"

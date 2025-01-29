@@ -4,7 +4,7 @@ import databaseService from "./database-service";
 
 
 const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID as string;
-const passwordRecoveryURL = process.env.NEXT_PUBLIC_PASSWORD_RECOVERY_URL as string;
+// const passwordRecoveryURL = process.env.NEXT_PUBLIC_PASSWORD_RECOVERY_URL as string;
 
 class AuthService {
   private client: Client;
@@ -94,7 +94,7 @@ class AuthService {
     try {
       const recovert = await this.account.createRecovery(
         email,
-        passwordRecoveryURL
+        "http://localhost:3000/password-recovery/process"
       );
       return recovert;
     } catch (error) {

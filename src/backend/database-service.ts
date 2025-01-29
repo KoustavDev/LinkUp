@@ -184,6 +184,25 @@ export class DatabaseService {
     }
   }
 
+  async sharePost(postId: string, shareNumber: number){
+    shareNumber += 1;
+    try {
+      const updatedPost = await this.databases.updateDocument(
+        dbID,
+        postsCollection,
+        postId,
+        {
+          share: shareNumber,
+        }
+      );
+      if (!updatedPost) throw Error;
+      return updatedPost;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
   async savePost(userId: string, postId: string) {
     try {
       const updatedPost = await this.databases.createDocument(

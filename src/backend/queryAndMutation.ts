@@ -120,6 +120,20 @@ export const useLikePost = () => {
     },
   });
 };
+
+export const useSharePost = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ postId, shareNumber }: { postId: string; shareNumber: number }) =>
+      databaseService.sharePost(postId, shareNumber),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
+      });
+    },
+  });
+}
+
 export const useSavePost = () => {
   const queryClient = useQueryClient();
   return useMutation({

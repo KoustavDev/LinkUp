@@ -14,18 +14,17 @@ const FileUploader = ({ fieldChange, mediaURL }: FileUploaderProps) => {
 
   const onDrop = useCallback(
     (acceptedFiles: FileWithPath[]) => {
-      console.log(acceptedFiles, fileURL, file);
+      console.log(file);
       setFileURL(URL.createObjectURL(acceptedFiles[0]));
       setFile(acceptedFiles);
       fieldChange(acceptedFiles);
     },
-    [fieldChange, file, fileURL]
+    [fieldChange, file]
   );
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {
       "image/*": [".png", ".jpeg", ".jpg"],
-      "video/*": [".mp4", ".mov", ".avi", ".mkv"],
     },
   });
   return (
