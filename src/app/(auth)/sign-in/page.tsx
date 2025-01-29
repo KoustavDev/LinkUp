@@ -17,7 +17,7 @@ import { SigninValidation } from "@/lib/validation";
 import Loader from "@/components/shared/Loader";
 import Link from "next/link";
 import { useToast } from "@/hooks/use-toast";
-import { useSignInAccount } from "@/backend/queryAndMutation";
+import { useSignInAccount, useSignout } from "@/backend/queryAndMutation";
 import { useAuthProvider } from "@/context/AuthProvider";
 import { useRouter } from "next/navigation";
 
@@ -26,6 +26,7 @@ const Page = () => {
   const { toast } = useToast();
   const { checkAuth, loading } = useAuthProvider();
   const { mutateAsync: signInUser, isPending } = useSignInAccount();
+  const  {mutate: signOut} = useSignout();
 
   const form = useForm<z.infer<typeof SigninValidation>>({
     resolver: zodResolver(SigninValidation),
@@ -38,9 +39,9 @@ const Page = () => {
   useEffect(() => {
     const cookieFallback = localStorage.getItem("cookieFallback");
     if(cookieFallback){
-      router.back();
+      signOut();
     }
-  }, [router]);
+  }, [signOut]);
 
   async function onSubmit(values: z.infer<typeof SigninValidation>) {
     try {
