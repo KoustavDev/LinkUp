@@ -39,6 +39,28 @@ export const SigninValidation = z.object({
     }),
 });
 
+export const emailValidation = z.object({
+  email: z.string().email("Invalid email"),
+});
+export const passwordValidation = z.object({
+  passwordNew: z
+    .string()
+    .min(8, {
+      message: "Password must be at least 8 characters.",
+    })
+    .max(18, {
+      message: "Password must be at most 18 characters.",
+    }),
+  passwordConform: z
+    .string()
+    .min(8, {
+      message: "Password must be at least 8 characters.",
+    })
+    .max(18, {
+      message: "Password must be at most 18 characters.",
+    }),
+});
+
 export const postValidation = z.object({
   caption: z
     .string()

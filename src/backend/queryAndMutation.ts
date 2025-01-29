@@ -1,4 +1,11 @@
-import { Icomment, INewPost, INewUser, IUpdatePost, IUpdateUser, LoginParams } from "@/app/types";
+import {
+  Icomment,
+  INewPost,
+  INewUser,
+  IUpdatePost,
+  IUpdateUser,
+  LoginParams,
+} from "@/app/types";
 import {
   useInfiniteQuery,
   useMutation,
@@ -32,6 +39,27 @@ export const useSignout = () => {
     },
   });
 };
+
+export const useInitPasswordRecovery = () => {
+  return useMutation({
+    mutationFn: (email: string) => AuthService.initPasswordRecovery(email),
+  });
+};
+
+export const useResetPassword = () => {
+  return useMutation({
+    mutationFn: ({
+      userId,
+      secret,
+      password,
+    }: {
+      userId: string;
+      secret: string;
+      password: string;
+    }) => AuthService.resetPassword(userId, secret, password),
+  });
+};
+
 export const useGetCurrentUser = () => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_CURRENT_USER],
@@ -190,7 +218,6 @@ export const useGetInfinitePosts = () => {
   });
 };
 
-
 export const useSearchPost = (searchTerm: string) => {
   return useQuery({
     queryKey: [QUERY_KEYS.SEARCH_POSTS, searchTerm],
@@ -220,14 +247,14 @@ export const useUpdateUser = () => {
       });
     },
   });
-}
+};
 
-export const useGetAllUser = (limit?:number ) => {
+export const useGetAllUser = (limit?: number) => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_USERS],
     queryFn: () => databaseService.getAllUsers(limit),
   });
-}
+};
 
 export const useCreateComment = () => {
   const queryClient = useQueryClient();
@@ -252,7 +279,7 @@ export const useCreateComment = () => {
       });
     },
   });
-}
+};
 
 export const useLikeComment = () => {
   const queryClient = useQueryClient();
@@ -329,4 +356,3 @@ export const useGetFollower = (userIds: string[]) => {
     enabled: userIds.length > 0,
   });
 };
-

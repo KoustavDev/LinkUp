@@ -121,6 +121,14 @@ const Page = () => {
             Sign up
           </Link>
         </p>
+        <p className="text-small-regular text-light-2 text-center mt-2">
+          <Link
+            href="/password-recovery"
+            className="text-primary-500 text-small-semibold ml-1"
+          >
+            Forgot password?
+          </Link>
+        </p>
         <p>bhola@gmail.com</p>
       </form>
     </Form>

@@ -11,7 +11,7 @@ import React, {
 } from "react";
 import { IUser } from "@/app/types";
 import authService from "@/backend/auth";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 // Initial user state
 export const INITIAL_USER: IUser = {
@@ -20,7 +20,7 @@ export const INITIAL_USER: IUser = {
   username: "",
   email: "",
   imageUrl: "",
-  bio: ""
+  bio: "",
 };
 
 // Interface for context type
@@ -55,6 +55,10 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuth, setIsAuth] = useState(false);
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+  const userId = searchParams.get("userId");
+  const secret = searchParams.get("secret");
+
   // Stable `checkAuth` function using useCallback
   const checkAuth = useCallback(async () => {
     setLoading(true);
@@ -68,7 +72,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
           username: currentAccount.username,
           email: currentAccount.email,
           imageUrl: currentAccount.imageUrl,
-          bio: currentAccount.bio
+          bio: currentAccount.bio,
         });
         return true;
       }
@@ -86,11 +90,13 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const cookieFallback = localStorage.getItem("cookieFallback");
     if (!cookieFallback || cookieFallback === "[]") {
-      router.push("/sign-in");
+      if (!userId && !secret) {
+        router.push("/sign-in");
+      }
     }
 
     checkAuth();
-  }, [router, checkAuth]); // Include router and checkAuth as dependencies
+  }, [router, checkAuth, userId, secret]); // Include router and checkAuth as dependencies
 
   // Context value
   const value = {

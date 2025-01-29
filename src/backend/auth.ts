@@ -4,6 +4,7 @@ import databaseService from "./database-service";
 
 
 const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID as string;
+const passwordRecoveryURL = process.env.NEXT_PUBLIC_PASSWORD_RECOVERY_URL as string;
 
 class AuthService {
   private client: Client;
@@ -70,7 +71,7 @@ class AuthService {
       }
     } catch (error) {
       // console.log("Appwrite service :: getCurrentUser :: error", error);
-      console.log('welcome', error);
+      console.log("welcome", error);
     }
     return null;
   }
@@ -86,6 +87,26 @@ class AuthService {
     } catch (error) {
       console.error("AuthService :: logout :: error", error);
       return false;
+    }
+  }
+
+  async initPasswordRecovery(email: string) {
+    try {
+      const recovert = await this.account.createRecovery(
+        email,
+        passwordRecoveryURL
+      );
+      return recovert;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async resetPassword(userId: string, secret: string, password: string) {
+    try {
+      return await this.account.updateRecovery(userId, secret, password);
+    } catch (error) {
+      throw error;
     }
   }
 }
