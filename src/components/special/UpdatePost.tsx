@@ -1,14 +1,13 @@
-'use client'
+"use client";
 import { useGetPost } from "@/backend/queryAndMutation";
 import PostForm from "@/components/forms/PostForm";
 import Image from "next/image";
 import React from "react";
 import Loader from "../shared/Loader";
 
-const UpdatePost = ({id} : {id:string}) => {
-    const { data: post, isPending } = useGetPost(id);
-    if (isPending) return <Loader />;
-    console.log(post);
+const UpdatePost = ({ id }: { id: string }) => {
+  const { data: post, isPending } = useGetPost(id);
+  if (isPending) return <Loader />;
   return (
     <div className="flex flex-1 mb-16 lg:mb-0">
       <div className="common-container">

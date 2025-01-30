@@ -6,10 +6,7 @@ import { Models } from "appwrite";
 
 const FollowingUser = ({ userId }: { userId: string }) => {
   const { data: user, isLoading } = useGetUserById(userId);
-  console.log(user);
   const { data: followerList, isPending: follwerLoading } = useGetFollower(user?.follower || []);
-  console.log( followerList);
-  console.log( followerList?.length);
   if (isLoading || follwerLoading) {
     return (
       <div className="flex-center w-full h-full">

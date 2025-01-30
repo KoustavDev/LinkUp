@@ -12,7 +12,6 @@ const ProfilePosts = ({
   showLikedPost: boolean;
 }) => {
   const { data: userData } = useGetUserById(id);
-  console.log(userData?.emailVerification);
   if (!userData)
     return (
       <div className="flex-center w-full h-full">
