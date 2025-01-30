@@ -51,7 +51,7 @@ export default function RootLayout({
       <div className="hidden lg:block relative flex-1">
         <div className="absolute inset-0">
           <Image
-            src="/assets/images/side-img.svg"
+            src="/assets/images/side-image.webp"
             alt="Authentication background"
             fill
             priority

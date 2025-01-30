@@ -57,7 +57,7 @@ export default function Page() {
     );
   }
   return (
-    <div className="flex flex-1 mb-16 mt-6 ml-6">
+    <div className="flex flex-1 mb-16">
       <div className="home-container">
         <div className="home-posts">
           <h2 className="h3-bold md:h2-bold text-left w-full">Home Feed</h2>

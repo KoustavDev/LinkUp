@@ -1,13 +1,12 @@
+// app/(root)/posts/[id]/page.tsx
 import PostDetails from "@/components/special/PostDetails";
-import React from "react";
-type types = {
-  params: {
-    id: string;
-  };
-};
-const page =  async ({ params }: types) => {
-  const postId = await params;
-  return <PostDetails postId={postId.id} />;
-};
+import { Metadata } from "next";
 
-export default page;
+
+export default function Page({ params }: { params: { id: string } }) {
+  return <PostDetails postId={params.id} />;
+}
+
+export const metadata: Metadata = {
+  title: "Post Details",
+};

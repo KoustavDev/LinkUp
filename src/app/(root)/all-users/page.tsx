@@ -24,7 +24,7 @@ const Page = () => {
     return;
   }
   return (
-    <div className="common-container">
+    <div className="common-container mb-16 lg:mb-0">
       <div className="user-container">
         <h2 className="h3-bold md:h2-bold text-left w-full">Search Users</h2>
         <Input
@@ -46,7 +46,9 @@ const Page = () => {
                 </li>
               ))
             ) : (
-              <p className="text-light-4 mt-10 text-center w-full">User not found</p>
+              <p className="text-light-4 mt-10 text-center w-full">
+                User not found
+              </p>
             )}
           </ul>
         )}
