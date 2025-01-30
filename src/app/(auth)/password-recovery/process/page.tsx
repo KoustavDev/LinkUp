@@ -28,11 +28,11 @@ const Page = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-      const cookieFallback = localStorage.getItem("cookieFallback");
-      if (cookieFallback) {
-        router.back();
-      }
-    }, [router]);
+    const cookieFallback = localStorage.getItem("cookieFallback");
+    if (cookieFallback) {
+      router.back();
+    }
+  }, [router]);
 
   const form = useForm<z.infer<typeof passwordValidation>>({
     resolver: zodResolver(passwordValidation),
@@ -76,7 +76,7 @@ const Page = () => {
     <Form {...form}>
       <h4 className="h4-bold md:h2-bold pt-5 sm:pt-12">Password Recovery</h4>
       <p className="text-light-3 small-medium md:base-regular mt-2">
-        Please enter your email address to recover your password
+        Please enter your new password
       </p>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
@@ -111,7 +111,7 @@ const Page = () => {
               <Loader /> Loading...
             </div>
           ) : (
-            "Set passowrd"
+            "Set password"
           )}
         </Button>
       </form>

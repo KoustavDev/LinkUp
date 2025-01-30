@@ -38,32 +38,37 @@ const Page = () => {
   });
 
   async function onSubmit(values: z.infer<typeof SignupValidation>) {
-   try {
-     const account = await createUserAccount(values);
-     if (!account) {
-       toast({
-         title: "Sign up failed. Please try again.",
-         variant: "destructive",
-       });
-       return;
-     }
-     const isLogin = await checkAuth();
-     if (isLogin) {
-       form.reset();
-       router.push("/");
-     } else {
-       toast({
-         title: "Sign up failed. Please try again.",
-         variant: "destructive",
-       });
-       return;
-     }
-   } catch (error) {
-    console.log({error});
-   }
+    try {
+      const account = await createUserAccount(values);
+      if (!account) {
+        toast({
+          title: "Sign up failed. Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+      const isLogin = await checkAuth();
+      if (isLogin) {
+        form.reset();
+        router.push("/");
+      } else {
+        toast({
+          title: "Sign up failed. Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+    } catch (error) {
+      const err = (error as { response?: { message?: string } })?.response
+        ?.message;
+      form.setError("password", {
+        type: "manual",
+        message: err || "Sign up failed. Please try again.",
+      });
+      return;
+    }
   }
 
-  
   return (
     <Form {...form}>
       <h4 className="h4-bold md:h2-bold pt-5 sm:pt-12">Create a new account</h4>

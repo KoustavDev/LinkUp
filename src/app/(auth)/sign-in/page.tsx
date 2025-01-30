@@ -26,7 +26,7 @@ const Page = () => {
   const { toast } = useToast();
   const { checkAuth, loading } = useAuthProvider();
   const { mutateAsync: signInUser, isPending } = useSignInAccount();
-  const  {mutate: signOut} = useSignout();
+  const { mutate: signOut } = useSignout();
 
   const form = useForm<z.infer<typeof SigninValidation>>({
     resolver: zodResolver(SigninValidation),
@@ -38,7 +38,7 @@ const Page = () => {
 
   useEffect(() => {
     const cookieFallback = localStorage.getItem("cookieFallback");
-    if(cookieFallback){
+    if (cookieFallback) {
       signOut();
     }
   }, [signOut]);
@@ -65,7 +65,12 @@ const Page = () => {
         return;
       }
     } catch (error) {
-      console.log({ error });
+      const err = (error as { response?: { message?: string } })?.response
+        ?.message;
+      form.setError("password", {
+        type: "manual",
+        message: err || "Sign up failed. Please try again.",
+      });
     }
   }
 
