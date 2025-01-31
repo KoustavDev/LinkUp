@@ -8,10 +8,12 @@ import React, {
   SetStateAction,
   useContext,
   useCallback,
+  Suspense,
 } from "react";
 import { IUser } from "@/app/types";
 import authService from "@/backend/auth";
 import { useRouter, useSearchParams } from "next/navigation";
+import Loader from "@/components/shared/Loader";
 
 // Initial user state
 export const INITIAL_USER: IUser = {
@@ -111,7 +113,15 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
-export default AuthProvider;
+
+// Wrapper component to handle suspense
+const AuthProviderWrapper = ({ children }: { children: ReactNode }) => (
+  <Suspense fallback={<Loader />}>
+    <AuthProvider>{children}</AuthProvider>
+  </Suspense>
+);
+
+export default AuthProviderWrapper;
 
 // Hook to use Auth context
 export const useAuthProvider = () => useContext(AuthContext);

@@ -2,13 +2,11 @@ import ProfilePosts from '@/components/special/ProfilePosts';
 import React from 'react'
 
 type types = {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 };
 const page = async ({params} : types) => {
-  const userId = await params;
-  return <ProfilePosts id={userId.id} showLikedPost={true} />;
+  const userId = (await params).id;
+  return <ProfilePosts id={userId} showLikedPost={true} />;
 }
 
 export default page
