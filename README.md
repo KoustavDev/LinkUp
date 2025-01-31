@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **LinkUp – A Modern Social Media Platform**  
 
-## Getting Started
+LinkUp is a **Next.js 15**-powered social media platform with **Appwrite** as the backend service. It allows users to connect, share posts, and engage with others seamlessly. Built with **TypeScript**, LinkUp ensures a fast and scalable experience.  
 
-First, run the development server:
+## **Tech Stack**  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🚀 **Frontend**:  
+- **React** with **Next.js 15**  
+- **TypeScript** for better type safety  
+- **ShadCN UI** for a modern and accessible design  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🛠️ **Backend & State Management**:  
+- **Appwrite** for authentication, database, and storage  
+- **TanStack Query** for efficient data fetching and caching  
+- **Zod** for data validation  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## **Features**  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+✅ **Authentication & Security**  
+- User login, logout, and password reset  
+- Secure authentication with Appwrite  
 
-## Learn More
+✅ **Post Management**  
+- Create, update, and delete posts effortlessly  
+- Infinite scrolling for a seamless browsing experience  
 
-To learn more about Next.js, take a look at the following resources:
+✅ **Engagement & Interaction**  
+- Like, comment, share, and save posts  
+- Follow, follow back, and unfollow users  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+✅ **Search & Discoverability**  
+- Search for users and posts easily  
+- Dynamic feed updates based on followed users  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+✅ **Appwrite Backend Support**  
+- User authentication and session management  
+- Appwrite database for posts, likes, comments, and follows  
+- Image storage with Appwrite's file storage system  
 
-## Deploy on Vercel
+## **Environment Variables**  
+The project includes an **`.env.example`** file, which outlines the required environment variables to configure the application correctly.  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## **Getting Started**  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/your-username/linkup.git
+   cd linkup
+   ```  
+2. Install dependencies:  
+   ```bash
+   npm install
+   ```  
+3. Set up your **`.env`** file following **`.env.example`**.  
+4. Start the development server:  
+   ```bash
+   npm run dev
+   ```  
+
+## **Contribute to LinkUp**  
+LinkUp is an **open-source** project, and contributions are welcome! 🚀  
+If you have suggestions, bug reports, or feature requests, feel free to:  
+- **Fork the repo and submit a PR**  
+- **Report issues** under the Issues tab  
+
+Let’s build something amazing together! 💡✨  
+
+---

@@ -2,15 +2,13 @@ import {
   useLikePost,
   useSavePost,
   useDeleteSavedPost,
-  useGetCurrentUser,
-  // useCreateComment,
+  useGetCurrentUser
 } from "@/backend/queryAndMutation";
 import { Models } from "appwrite";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import ShareBtn from "./ShareBtn";
-// import { Input } from "../ui/input";
 
 const PostState = ({
   post,
@@ -19,6 +17,7 @@ const PostState = ({
   post: Models.Document;
   userId: string;
 }) => {
+  const rootUrl = process.env.NEXT_PUBLIC_APPWRITE_ROOT_URL as string;
   const { data: userData } = useGetCurrentUser();
   const likedUsers = post.likes.map((user: Models.Document) => user.$id);
   const [isSaved, setIsSaved] = useState(false);
@@ -109,7 +108,7 @@ const PostState = ({
           </div> */}
           <ShareBtn
             postId={post.$id}
-            url={`http://localhost:3000/posts/${post.$id}`}
+            url={`${rootUrl}/posts/${post.$id}`}
             shareNumber={post.share}
           />
           <div className="flex gap-2">
