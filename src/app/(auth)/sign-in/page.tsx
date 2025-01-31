@@ -135,7 +135,6 @@ const Page = () => {
             Forgot password?
           </Link>
         </p>
-        <p>bhola@gmail.com</p>
       </form>
     </Form>
   );
