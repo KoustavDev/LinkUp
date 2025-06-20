@@ -2,6 +2,8 @@
 
 LinkUp is a **Next.js 15**-powered social media platform with **Appwrite** as the backend service. It allows users to connect, share posts, and engage with others seamlessly. Built with **TypeScript**, LinkUp ensures a fast and scalable experience.  
 
+[Project demo video](https://www.linkedin.com/posts/koustav-majhi-61b3842ba_nextjs-react-typescript-activity-7291402297396379648-V4WX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEyV6ncB7keuqdKWX-J-wD-vErDD9zZMZng)
+
 ## **Tech Stack**  
 
 🚀 **Frontend**:  
